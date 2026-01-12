@@ -19,3 +19,19 @@ router.post("/" ,async (req,res) => {
    }
 
 })
+
+router.get("/" ,async (req , res) => {
+   try{
+     const allTodos = await pool.query("SELECT * FROM todo");
+     res.json(allTodos.rows)
+
+   }
+   catch(error){
+      console.log(error.message);
+      res.status(500).send("server error")
+   }
+
+})
+
+
+export default router
